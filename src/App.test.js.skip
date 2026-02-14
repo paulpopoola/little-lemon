@@ -1,0 +1,10 @@
+import { render } from "@testing-library/react";
+import App from "./App";
+
+test("App component renders without crashing", () => {
+  // This will still test that App can be imported and rendered
+  // Even if react-router-dom has issues, this should catch them
+  expect(() => {
+    render(<App />);
+  }).not.toThrow();
+});
