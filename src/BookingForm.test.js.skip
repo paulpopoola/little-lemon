@@ -2,12 +2,16 @@ import { render, screen } from "@testing-library/react";
 import BookingForm from "./BookingForm";
 
 test('renders "Choose date" label', () => {
-  // Mock props
   const mockAvailableTimes = ["17:00", "18:00", "19:00"];
   const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
-    <BookingForm availableTimes={mockAvailableTimes} dispatch={mockDispatch} />,
+    <BookingForm
+      availableTimes={mockAvailableTimes}
+      dispatch={mockDispatch}
+      submitForm={mockSubmitForm}
+    />,
   );
 
   const labelElement = screen.getByText(/choose date/i);
@@ -15,12 +19,16 @@ test('renders "Choose date" label', () => {
 });
 
 test('renders "Choose time" label', () => {
-  // Mock props
   const mockAvailableTimes = ["17:00", "18:00", "19:00"];
   const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
-    <BookingForm availableTimes={mockAvailableTimes} dispatch={mockDispatch} />,
+    <BookingForm
+      availableTimes={mockAvailableTimes}
+      dispatch={mockDispatch}
+      submitForm={mockSubmitForm}
+    />,
   );
 
   const labelElement = screen.getByText(/choose time/i);
@@ -28,12 +36,16 @@ test('renders "Choose time" label', () => {
 });
 
 test("renders submit button with correct text", () => {
-  // Mock props
   const mockAvailableTimes = ["17:00", "18:00", "19:00"];
   const mockDispatch = jest.fn();
+  const mockSubmitForm = jest.fn();
 
   render(
-    <BookingForm availableTimes={mockAvailableTimes} dispatch={mockDispatch} />,
+    <BookingForm
+      availableTimes={mockAvailableTimes}
+      dispatch={mockDispatch}
+      submitForm={mockSubmitForm}
+    />,
   );
 
   const submitButton = screen.getByDisplayValue(/make your reservation/i);

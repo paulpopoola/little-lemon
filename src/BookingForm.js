@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, dispatch, submitForm }) {
   // State variables for each form field
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -28,8 +28,19 @@ function BookingForm({ availableTimes, dispatch }) {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", { date, time, guests, occasion });
-    // Later you'll connect this to an API
+
+    // Create form data object
+    const formData = {
+      date,
+      time,
+      guests,
+      occasion,
+    };
+
+    console.log("Submitting form:", formData);
+
+    // Call the submitForm function passed from BookingPage
+    submitForm(formData);
   };
 
   return (
@@ -40,6 +51,7 @@ function BookingForm({ availableTimes, dispatch }) {
         id="res-date"
         value={date}
         onChange={handleDateChange}
+        required
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -47,6 +59,7 @@ function BookingForm({ availableTimes, dispatch }) {
         id="res-time"
         value={time}
         onChange={(e) => setTime(e.target.value)}
+        required
       >
         <option value="">Select a time</option>
         {times.map((availableTime) => (
@@ -65,6 +78,7 @@ function BookingForm({ availableTimes, dispatch }) {
         max="10"
         value={guests}
         onChange={(e) => setGuests(e.target.value)}
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
@@ -72,6 +86,7 @@ function BookingForm({ availableTimes, dispatch }) {
         id="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
         <option value="">Select an occasion</option>
         <option value="birthday">Birthday</option>

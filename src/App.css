@@ -165,3 +165,23 @@ input[type="submit"]:hover {
   background-color: #ee9972;
   color: white;
 }
+/* Confirmed booking page styles */
+.confirmed-booking {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.confirmed-booking h1 {
+  color: #495e57;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.confirmed-booking p {
+  color: #495e57;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
