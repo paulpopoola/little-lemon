@@ -7,6 +7,12 @@ function BookingForm({ availableTimes, dispatch }) {
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("");
 
+  // Safety check: if availableTimes is undefined or empty, use fallback
+  const times =
+    availableTimes && availableTimes.length > 0
+      ? availableTimes
+      : ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+
   // Handle date change and dispatch to update available times
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -43,7 +49,7 @@ function BookingForm({ availableTimes, dispatch }) {
         onChange={(e) => setTime(e.target.value)}
       >
         <option value="">Select a time</option>
-        {availableTimes.map((availableTime) => (
+        {times.map((availableTime) => (
           <option key={availableTime} value={availableTime}>
             {availableTime}
           </option>

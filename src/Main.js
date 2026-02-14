@@ -1,18 +1,36 @@
 import { useReducer } from "react";
 import BookingForm from "./BookingForm";
 
-// Step 2: Initialize available times
+// Step 2: Initialize available times using the API
 export function initializeTimes() {
+  // Create a Date object for today
+  const today = new Date();
+
+  // Use the API to fetch available times for today
+  if (window.fetchAPI) {
+    const times = window.fetchAPI(today);
+    return times && times.length > 0 ? times : getDefaultTimes();
+  }
+
+  // Fallback for testing environment or if API fails
+  return getDefaultTimes();
+}
+
+// Helper function to return default times
+function getDefaultTimes() {
   return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
 }
 
-// Step 2: Update times based on selected date
+// Step 2: Update times based on selected date using the API
 export function updateTimes(state, action) {
-  // For now, return the same available times regardless of the date
-  // Later, this will be updated to fetch times based on the selected date
   switch (action.type) {
     case "UPDATE_TIMES":
-      // You can add logic here to filter times based on action.date
+      // Use the API to fetch available times for the selected date
+      if (window.fetchAPI && action.date) {
+        const selectedDate = new Date(action.date);
+        const times = window.fetchAPI(selectedDate);
+        return times && times.length > 0 ? times : state;
+      }
       return state;
     default:
       return state;
@@ -20,7 +38,7 @@ export function updateTimes(state, action) {
 }
 
 function Main() {
-  // Step 1 & 2: Use reducer instead of useState
+  // Use reducer to manage available times
   const [availableTimes, dispatch] = useReducer(
     updateTimes,
     [],
