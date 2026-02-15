@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
 import heroImage from "./assets/heroImage.png";
 import Bruschetta from "./assets/Bruschetta.png";
@@ -63,7 +65,7 @@ function Main() {
                   and rosemary croutons.
                 </p>
                 <div className="special-card-footer">
-                  <a href="#" className="delivery-link">
+                  <a href="#footer" className="delivery-link">
                     Order a delivery 🚴
                   </a>
                 </div>
@@ -87,7 +89,7 @@ function Main() {
                   smeared with garlic and seasoned with salt and olive oil.
                 </p>
                 <div className="special-card-footer">
-                  <a href="#" className="delivery-link">
+                  <a href="#order" className="delivery-link">
                     Order a delivery 🚴
                   </a>
                 </div>
@@ -112,6 +114,7 @@ function Main() {
                   imagined.
                 </p>
                 <div className="special-card-footer">
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a href="#" className="delivery-link">
                     Order a delivery 🚴
                   </a>

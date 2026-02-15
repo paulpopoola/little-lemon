@@ -513,32 +513,6 @@ nav a:hover::after {
   z-index: 2;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .about-image {
-    height: 350px;
-    margin-top: var(--spacing-xl);
-  }
-
-  .image-back,
-  .image-front {
-    width: 70%;
-    height: 280px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-image {
-    height: 300px;
-  }
-
-  .image-back,
-  .image-front {
-    width: 80%;
-    height: 220px;
-  }
-}
-
 /* === FOOTER === */
 footer {
   background-color: var(--black);
@@ -623,84 +597,126 @@ footer .copyright {
   opacity: 0.6;
 }
 
+/* Social Media Icon Images */
+.social-icon-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.social-icon:hover .social-icon-img {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
 /* === BOOKING PAGE === */
-.booking-page {
-  background-color: var(--white);
-  padding: var(--spacing-xxl) 0;
-  min-height: 60vh;
+.booking-page-wrapper {
+  padding: 0;
+  margin: 0;
 }
 
-.booking-page h1 {
-  font-size: 48px;
-  font-weight: 500;
-  color: var(--primary-green);
-  margin-bottom: var(--spacing-sm);
+.booking-hero-section {
+  background:
+    linear-gradient(rgba(73, 94, 87, 0.85), rgba(73, 94, 87, 0.85)),
+    url("./assets/heroImage.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--spacing-xxl) var(--spacing-lg);
 }
 
-.booking-page > p {
-  font-size: 18px;
-  color: var(--black);
-  margin-bottom: var(--spacing-xl);
-}
-
-/* === BOOKING FORM === */
-form[aria-label="Reservation form"] {
-  max-width: 500px;
+.booking-content {
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: var(--highlight-light);
-  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.booking-content h1 {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 500;
+  color: var(--primary-yellow);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.booking-content p {
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: var(--spacing-xl);
+  font-weight: 400;
+}
+
+.booking-form-card {
+  background-color: var(--white);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* === BOOKING FORM - 2 COLUMN GRID === */
+.booking-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
 }
 
 .form-field {
-  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
-form label {
-  display: block;
+.form-field label {
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.5px;
   color: var(--primary-green);
   margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
 }
 
-form input[type="date"],
-form input[type="number"],
-form select {
-  width: 100%;
-  padding: 12px 16px;
+.form-field input,
+.form-field select {
+  padding: 14px 16px;
   font-family: var(--font-body);
   font-size: 16px;
   color: var(--black);
-  background-color: var(--white);
-  border: 2px solid var(--primary-green);
+  background-color: #edefee;
+  border: 1px solid #e0e0e0;
   border-radius: var(--radius-sm);
   transition: all 0.3s ease;
 }
 
-form input:focus,
-form select:focus {
+.form-field input:focus,
+.form-field select:focus {
   outline: none;
-  border-color: var(--primary-yellow);
-  box-shadow: 0 0 0 3px rgba(244, 206, 20, 0.1);
-}
-
-form input:invalid,
-form select:invalid {
-  border-color: var(--secondary-salmon);
-}
-
-form input:valid,
-form select:valid {
+  background-color: var(--white);
   border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(73, 94, 87, 0.1);
 }
 
-form button[type="submit"],
-form input[type="submit"] {
+.form-field select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23495E57' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* === RESERVE BUTTON === */
+.btn-reserve {
   width: 100%;
-  padding: 16px;
+  padding: 16px 32px;
   margin-top: var(--spacing-md);
   font-family: var(--font-body);
   font-size: 18px;
@@ -713,19 +729,18 @@ form input[type="submit"] {
   transition: all 0.3s ease;
 }
 
-form button[type="submit"]:hover:not(:disabled),
-form input[type="submit"]:hover:not(:disabled) {
+.btn-reserve:hover:not(:disabled) {
   background-color: #e4be04;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(244, 206, 20, 0.4);
 }
 
-form button[type="submit"]:disabled,
-form input[type="submit"]:disabled {
+.btn-reserve:disabled {
   background-color: #cccccc;
   color: #666666;
   cursor: not-allowed;
   opacity: 0.6;
+  transform: none;
 }
 
 /* === CONFIRMED BOOKING === */
@@ -800,6 +815,35 @@ form input[type="submit"]:disabled {
   footer .container {
     grid-template-columns: 1fr;
   }
+
+  /* Booking page responsive */
+  .booking-hero-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .booking-content h1 {
+    font-size: 48px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form-card {
+    padding: var(--spacing-lg);
+  }
+
+  /* About images responsive */
+  .about-image {
+    height: 350px;
+    margin-top: var(--spacing-xl);
+  }
+
+  .image-back,
+  .image-front {
+    width: 70%;
+    height: 280px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -816,16 +860,24 @@ form input[type="submit"]:disabled {
     align-items: flex-start;
     gap: var(--spacing-sm);
   }
-}
 
-/* Social Media Icon Images */
-.social-icon-img {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
+  /* Booking page mobile */
+  .booking-content h1 {
+    font-size: 36px;
+  }
 
-.social-icon:hover .social-icon-img {
-  transform: scale(1.15);
-  opacity: 0.8;
+  .booking-content p {
+    font-size: 16px;
+  }
+
+  /* About images mobile */
+  .about-image {
+    height: 300px;
+  }
+
+  .image-back,
+  .image-front {
+    width: 80%;
+    height: 220px;
+  }
 }
