@@ -28,17 +28,20 @@ function BookingPage() {
   };
 
   return (
-    <div className="booking-page">
-      <h1>Reserve a Table</h1>
-      <p>
-        Book your table at Little Lemon for an unforgettable dining experience!
-      </p>
-      <BookingForm
-        availableTimes={availableTimes}
-        dispatch={dispatch}
-        submitForm={submitForm}
-      />
-    </div>
+    <main role="main" aria-label="Reservation page">
+      <section className="booking-page" aria-labelledby="booking-heading">
+        <h1 id="booking-heading">Reserve a Table</h1>
+        <p>
+          Book your table at Little Lemon for an unforgettable dining
+          experience!
+        </p>
+        <BookingForm
+          availableTimes={availableTimes}
+          dispatch={dispatch}
+          submitForm={submitForm}
+        />
+      </section>
+    </main>
   );
 }
 

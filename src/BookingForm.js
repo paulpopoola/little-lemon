@@ -68,26 +68,37 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
 
   return (
     <form onSubmit={handleSubmit} aria-label="Reservation form">
-      <label htmlFor="res-date">Choose date *</label>
+      <label htmlFor="res-date">
+        Choose date <span aria-hidden="true">*</span>
+        <span className="visually-hidden">required</span>
+      </label>
       <input
         type="date"
         id="res-date"
+        name="res-date"
         value={date}
         min={getTodayDate()}
         onChange={handleDateChange}
         required
         aria-required="true"
-        aria-label="Choose reservation date"
+        aria-describedby="date-description"
       />
+      <span id="date-description" className="visually-hidden">
+        Select your preferred reservation date. Past dates are not available.
+      </span>
 
-      <label htmlFor="res-time">Choose time *</label>
+      <label htmlFor="res-time">
+        Choose time <span aria-hidden="true">*</span>
+        <span className="visually-hidden">required</span>
+      </label>
       <select
         id="res-time"
+        name="res-time"
         value={time}
         onChange={(e) => setTime(e.target.value)}
         required
         aria-required="true"
-        aria-label="Choose reservation time"
+        aria-describedby="time-description"
       >
         <option value="">Select a time</option>
         {times.map((availableTime) => (
@@ -96,11 +107,18 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
           </option>
         ))}
       </select>
+      <span id="time-description" className="visually-hidden">
+        Select your preferred reservation time from available slots.
+      </span>
 
-      <label htmlFor="guests">Number of guests *</label>
+      <label htmlFor="guests">
+        Number of guests <span aria-hidden="true">*</span>
+        <span className="visually-hidden">required</span>
+      </label>
       <input
         type="number"
         id="guests"
+        name="guests"
         placeholder="1"
         min="1"
         max="10"
@@ -108,30 +126,46 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         onChange={(e) => setGuests(parseInt(e.target.value))}
         required
         aria-required="true"
-        aria-label="Number of guests"
+        aria-describedby="guests-description"
       />
+      <span id="guests-description" className="visually-hidden">
+        Enter the number of guests, between 1 and 10.
+      </span>
 
-      <label htmlFor="occasion">Occasion *</label>
+      <label htmlFor="occasion">
+        Occasion <span aria-hidden="true">*</span>
+        <span className="visually-hidden">required</span>
+      </label>
       <select
         id="occasion"
+        name="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
         required
         aria-required="true"
-        aria-label="Select occasion"
+        aria-describedby="occasion-description"
       >
         <option value="">Select an occasion</option>
         <option value="birthday">Birthday</option>
         <option value="engagement">Engagement</option>
         <option value="anniversary">Anniversary</option>
       </select>
+      <span id="occasion-description" className="visually-hidden">
+        Select the occasion for your reservation.
+      </span>
 
-      <input
+      <button
         type="submit"
-        value="Make Your reservation"
         disabled={!isFormValid()}
-        aria-label="Submit reservation"
-      />
+        aria-label="On Click"
+        aria-describedby="submit-description"
+      >
+        Make Your Reservation
+      </button>
+      <span id="submit-description" className="visually-hidden">
+        Submit your reservation request. Button is enabled when all fields are
+        completed.
+      </span>
     </form>
   );
 }
